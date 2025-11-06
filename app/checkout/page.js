@@ -138,7 +138,7 @@ function Checkout() {
         key: razorpayKey,
         amount: amount,
         currency: currency || 'INR',
-        name: 'Codeswear',
+        name: 'Fitloom',
         description: productName,
         order_id: orderId,
         prefill: {

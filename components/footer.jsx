@@ -10,7 +10,7 @@ function Footer() {
                         {/* Logo & About */}
                         <div>
                             <Link href={"/"}>
-                             <h2 className="text-xl font-bold text-white">Codeswear</h2>
+                             <h2 className="text-xl font-bold text-white">Fitloom</h2>
                             </Link>
                             <p className="mt-2 text-sm text-gray-400">
                                 Your one-stop shop for all products. Quality and trust delivered.
@@ -57,7 +57,7 @@ function Footer() {
 
                     {/* Bottom */}
                     <div className="mt-8 border-t border-gray-700 pt-4 text-center text-sm text-gray-400">
-                        © {new Date().getFullYear()} Codeswear. All rights reserved.
+                        © {new Date().getFullYear()} Fitloom. All rights reserved.
                     </div>
                 </div>
             </footer>

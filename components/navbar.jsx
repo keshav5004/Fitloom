@@ -33,7 +33,7 @@ export default function Navbar() {
     <div className="relative">
       <nav className="flex justify-between items-center px-8 py-3 shadow-md bg-white">
         <div className="text-2xl font-bold text-violet-600">
-          <Link href="/">Codeswear</Link>
+          <Link href="/">Fitloom</Link>
         </div>
 
         <div className="flex space-x-6 font-medium">

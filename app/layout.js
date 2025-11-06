@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Codeswear.com - Wear the Code",
+  title: "Fitloom.com - Wear the Fit",
   description: "Quality developer-themed apparel and accessories.",
 };
 
