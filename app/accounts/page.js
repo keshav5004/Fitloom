@@ -399,11 +399,11 @@ export default function AccountsPage() {
               ) : (
                 <div className="space-y-4">
                   {orders.map((order) => (
-                    <div key={order._id} className="border rounded-lg p-6 hover:shadow-md transition-shadow">
-                      <div className="flex justify-between items-start mb-4">
+                    <div key={order._id} className="border rounded-lg p-4 md:p-6 hover:shadow-md transition-shadow">
+                      <div className="flex justify-between items-start mb-3 md:mb-4">
                         <div>
-                          <p className="font-medium text-lg">Order #{order.orderId}</p>
-                          <p className="text-sm text-gray-600">
+                          <p className="font-medium text-base md:text-lg">Order #{order.orderId}</p>
+                          <p className="text-xs md:text-sm text-gray-600">
                             {new Date(order.createdAt).toLocaleDateString('en-US', {
                               year: 'numeric',
                               month: 'long',
@@ -412,12 +412,12 @@ export default function AccountsPage() {
                               minute: '2-digit'
                             })}
                           </p>
-                          <p className="text-sm text-gray-600">
+                          <p className="text-xs md:text-sm text-gray-600">
                             {order.products.length} item(s) - ₹{order.total}
                           </p>
                         </div>
                         <div className="text-right">
-                          <span className={`inline-flex px-3 py-1 text-sm font-semibold rounded-full ${
+                          <span className={`inline-flex px-2 py-0.5 md:px-3 md:py-1 text-xs md:text-sm font-semibold rounded-full ${
                             order.status === 'delivered' ? 'bg-green-100 text-green-800' :
                             order.status === 'shipped' ? 'bg-blue-100 text-blue-800' :
                             order.status === 'cancelled' ? 'bg-red-100 text-red-800' :
@@ -426,21 +426,21 @@ export default function AccountsPage() {
                           }`}>
                             {order.status.charAt(0).toUpperCase() + order.status.slice(1)}
                           </span>
-                        <div className="mt-2 text-xs text-gray-700">
+                        <div className="mt-2 text-[10px] md:text-xs text-gray-700">
                           <span className="mr-2">Payment:</span>
                           <span className={`font-medium ${order.paymentStatus === 'paid' ? 'text-green-700' : 'text-yellow-700'}`}>
                             {order.paymentStatus?.toUpperCase() || 'PENDING'}
                           </span>
                           {order.paymentId && (
                             <span className="ml-2">
-                              • ID: <span className="font-mono">{order.paymentId}</span>
+                              • ID: <span className="font-mono break-all">{order.paymentId}</span>
                             </span>
                           )}
                         </div>
                           {['pending', 'confirmed'].includes(order.status) && (
                             <button
                               onClick={() => handleCancelOrder(order._id)}
-                              className="ml-2 text-red-600 hover:text-red-800 text-sm font-medium"
+                              className="ml-2 text-red-600 hover:text-red-800 text-xs md:text-sm font-medium"
                             >
                               Cancel Order
                             </button>
@@ -459,20 +459,20 @@ export default function AccountsPage() {
                                   <img 
                                     src={product.image} 
                                     alt={product.name}
-                                    className="w-12 h-12 object-cover rounded"
+                                    className="w-10 h-10 md:w-12 md:h-12 object-cover rounded"
                                   />
                                 )}
                                 <div>
-                                  <p className="font-medium text-sm">{product.name}</p>
-                                  <p className="text-xs text-gray-600">
+                                  <p className="font-medium text-xs md:text-sm">{product.name}</p>
+                                  <p className="text-[10px] md:text-xs text-gray-600">
                                     {product.size && `Size: ${product.size}`} 
                                     {product.color && ` | Color: ${product.color}`}
                                   </p>
                                 </div>
                               </div>
                               <div className="text-right">
-                                <p className="font-medium">₹{product.price}</p>
-                                <p className="text-xs text-gray-600">Qty: {product.quantity}</p>
+                                <p className="font-medium text-sm md:text-base">₹{product.price}</p>
+                                <p className="text-[10px] md:text-xs text-gray-600">Qty: {product.quantity}</p>
                               </div>
                             </div>
                           ))}

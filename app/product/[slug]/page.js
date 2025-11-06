@@ -110,7 +110,7 @@ export default function ProductPage() {
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
-        <div className="container  px-50 py-10 mx-auto">
+        <div className="container px-4 md:px-10 py-10 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <div className="lg:w-1/2 w-full flex items-center justify-center">
               <div className="relative w-72 h-72 sm:w-80 sm:h-80">
@@ -210,7 +210,7 @@ export default function ProductPage() {
                 )}
                 <button
                   onClick={handleBuyNow}
-                  className="ml-auto mr-2 text-white bg-blue-600 border-0 py-2 px-6 focus:outline-none hover:bg-blue-700 rounded"
+                  className="ml-auto mr-2 text-white bg-blue-600 border-0 py-2 px-4 text-sm md:px-6 md:text-base focus:outline-none hover:bg-blue-700 rounded"
                   disabled={!currentVariant?.availability}
                   style={!currentVariant?.availability ? { opacity: 0.6, cursor: "not-allowed" } : {}}
                 >
@@ -224,7 +224,7 @@ export default function ProductPage() {
                     size: "M",
                     color: currentVariant?.color || selectedColorKey
                   })}
-                  className="flex ml-auto text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded"
+                  className="flex ml-auto text-white bg-pink-500 border-0 py-2 px-4 text-sm md:px-6 md:text-base focus:outline-none hover:bg-pink-600 rounded"
                   disabled={!currentVariant?.availability}
                   style={!currentVariant?.availability ? { opacity: 0.6, cursor: "not-allowed" } : {}}
                 >

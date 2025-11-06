@@ -2,13 +2,14 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { useCart } from "@/components/context/CartContext";
-import { RiAccountCircleFill } from "react-icons/ri";
+import { RiAccountCircleFill, RiShoppingCart2Line } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import { getToken, removeToken } from "@/utils/auth";
 
 
 export default function Navbar() {
   const [cartOpen, setCartOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const { cartItems, changeQuantity, removeFromCart, clearCart } = useCart();
   const [userName, setUserName] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -31,21 +32,33 @@ export default function Navbar() {
 
   return (
     <div className="relative">
-      <nav className="flex justify-between items-center px-8 py-3 shadow-md bg-white">
+      <nav className="flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3 shadow-md bg-white w-full overflow-hidden">
         <div className="text-2xl font-bold text-violet-600">
           <Link href="/">Fitloom</Link>
         </div>
 
-        <div className="flex space-x-6 font-medium">
+        {/* Desktop nav */}
+        <div className="hidden md:flex space-x-6 font-medium">
           <Link href="/tshirt" className="hover:text-violet-600">Tshirts</Link>
           <Link href="/hoodies" className="hover:text-violet-600">Hoodies</Link>
           <Link href="/mugs" className="hover:text-violet-600">Mugs</Link>
           <Link href="/stickers" className="hover:text-violet-600">Stickers</Link>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2 md:gap-4 min-w-0">
+          {/* Mobile menu button */}
+          <button
+            className="md:hidden p-2 rounded hover:bg-gray-100"
+            aria-label="Open menu"
+            onClick={() => setMobileOpen(!mobileOpen)}
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5" />
+            </svg>
+          </button>
+
           {/* Text left to account icon */}
-          <span className="text-sm text-gray-700">
+          <span className="text-[11px] sm:text-sm text-gray-700 truncate max-w-[90px] sm:max-w-none">
             {userName ? `Welcome, ${userName}` : "Login"}
           </span>
           {isLoggedIn ? (
@@ -55,7 +68,7 @@ export default function Navbar() {
               </Link>
               <button 
                 onClick={handleLogout}
-                className="text-sm text-red-600 hover:text-red-800"
+                className="text-xs sm:text-sm text-red-600 hover:text-red-800"
               >
                 Logout
               </button>
@@ -67,12 +80,26 @@ export default function Navbar() {
           )}
           <button
             onClick={() => setCartOpen(true)}
-            className="px-4 py-2 rounded-lg bg-violet-600 text-white hover:bg-violet-700 font-serif"
+            className="inline-flex items-center justify-center rounded-lg bg-violet-600 text-white hover:bg-violet-700 font-serif text-sm md:text-base w-9 h-9 md:w-auto md:h-auto px-0 py-0 md:px-4 md:py-2 shrink-0"
+            aria-label="Open cart"
           >
-            Cart ({cartItems.length})
+            <RiShoppingCart2Line className="text-lg md:text-xl" />
+            <span className="hidden md:inline ml-2">Cart ({cartItems.length})</span>
           </button>
         </div>
       </nav>
+
+      {/* Mobile nav panel */}
+      {mobileOpen && (
+        <div className="md:hidden absolute left-0 right-0 bg-white shadow border-t z-40">
+          <div className="px-4 py-3 flex flex-col space-y-2">
+            <Link href="/tshirt" onClick={() => setMobileOpen(false)} className="py-2">Tshirts</Link>
+            <Link href="/hoodies" onClick={() => setMobileOpen(false)} className="py-2">Hoodies</Link>
+            <Link href="/mugs" onClick={() => setMobileOpen(false)} className="py-2">Mugs</Link>
+            <Link href="/stickers" onClick={() => setMobileOpen(false)} className="py-2">Stickers</Link>
+          </div>
+        </div>
+      )}
 
       {/* Cart Sidebar */}
       <div className={`fixed top-0 right-0 h-full w-80 bg-white shadow-lg z-50 transform transition-transform ${cartOpen ? "translate-x-0" : "translate-x-full"}`}>
