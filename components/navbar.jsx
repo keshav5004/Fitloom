@@ -39,10 +39,10 @@ export default function Navbar() {
 
         {/* Desktop nav */}
         <div className="hidden md:flex space-x-6 font-medium">
-          <Link href="/tshirt" className="hover:text-violet-600">Tshirts</Link>
-          <Link href="/hoodies" className="hover:text-violet-600">Hoodies</Link>
-          <Link href="/mugs" className="hover:text-violet-600">Mugs</Link>
-          <Link href="/stickers" className="hover:text-violet-600">Stickers</Link>
+          <Link href="/tshirt" className="hover:text-violet-600 bg-[#1aabb8]/70 p-2 rounded-3xl backdrop-blur-md border border-[#1aabb8]/90 shadow-lg">Tshirts</Link>
+          <Link href="/hoodies" className="hover:text-violet-600 bg-[#1aabb8]/70 p-2 rounded-3xl backdrop-blur-md border border-[#1aabb8]/90 shadow-lg">Hoodies</Link>
+          <Link href="/mugs" className="hover:text-violet-600 bg-[#1aabb8]/70 p-2 rounded-3xl backdrop-blur-md border border-[#1aabb8]/90 shadow-lg">Mugs</Link>
+          <Link href="/stickers" className="hover:text-violet-600 bg-[#1aabb8]/70 p-2 rounded-3xl backdrop-blur-md border border-[#1aabb8]/90 shadow-lg">Stickers</Link>
         </div>
 
         <div className="flex items-center gap-2 md:gap-4 min-w-0">
@@ -102,40 +102,40 @@ export default function Navbar() {
       )}
 
       {/* Cart Sidebar */}
-      <div className={`fixed top-0 right-0 h-full w-80 bg-white shadow-lg z-50 transform transition-transform ${cartOpen ? "translate-x-0" : "translate-x-full"}`}>
+      <div className={`fixed top-0 right-0 h-full w-80 bg-amber-50 shadow-lg z-50 transform transition-transform ${cartOpen ? "translate-x-0" : "translate-x-full"}`}>
         <div className="p-4 flex justify-between items-center border-b">
           <h3 className="font-bold text-2xl font-serif text-cyan-500">Your Cart</h3>
           <button onClick={() => setCartOpen(false)} className="text-red-500 font-bold p-2 bg-amber-100 rounded-2xl">X</button>
         </div>
 
-        <div className="p-4 flex flex-col gap-4 overflow-y-auto h-[calc(100%-120px)]">
+        <div className="p-4 flex flex-col gap-4 overflow-y-auto h-[calc(100%-130px)]">
           {cartItems.length === 0 ? (
             <p className="text-gray-500 text-center">Cart is empty</p>
           ) : (
             cartItems.map(item => (
-              <div key={item.id} className="flex justify-between items-center border p-2 rounded bg-blue-50">
+              <div key={item.id} className="flex justify-between items-center border p-2 rounded bg-blue-50 shadow-lg">
                 <div>
                   <p className="font-medium">{item.name}</p>
                   <p className="text-gray-500">₹{item.price}</p>
                   <div className="flex items-center gap-3 mt-1 font-bold">
-                    <button onClick={() => changeQuantity(item.id, -1)} className="px-2 py-1 bg-red-200 rounded">-</button>
+                    <button onClick={() => changeQuantity(item.id, -1)} className="px-2 py-1 bg-red-200 rounded shadow-lg">-</button>
                     <span>{item.qty}</span>
-                    <button onClick={() => changeQuantity(item.id, 1)} className="px-2 py-1 bg-green-200 rounded">+</button>
+                    <button onClick={() => changeQuantity(item.id, 1)} className="px-2 py-1 bg-green-200 rounded shadow-lg">+</button>
                   </div>
                 </div>
-                <button onClick={() => removeFromCart(item.id)} className="text-red-500 font-bold bg-amber-400 px-2 py-1 rounded-2xl">Delete</button>
+                <button onClick={() => removeFromCart(item.id)} className="text-red-400 font-bold bg-amber-300 shadow-lg px-2 py-1 rounded-2xl">Delete</button>
               </div>
             ))
           )}
         </div>
 
         {cartItems.length > 0 && (
-          <div className="p-2 border-t flex justify-between items-center">
-            <button onClick={clearCart} className="bg-red-700 text-white px-2 py-2 rounded hover:bg-red-800">Clear Cart</button>
+          <div className=" border-t flex justify-between items-center p-2 ">
+            <button onClick={clearCart} className="bg-red-700 text-white px-2 py-2 rounded hover:bg-red-800 shadow-lg">Clear Cart</button>
             <Link href="/checkout">
               <button
                 onClick={() => setCartOpen(false)} // optional: close sidebar when navigating
-                className="w-full bg-blue-700 text-white py-2 px-2 rounded-lg hover:bg-blue-800 transition"
+                className="w-full bg-blue-700 text-white py-2 px-2 rounded-lg hover:bg-blue-800 transition shadow-lg"
               >
                 Go to Checkout
               </button>

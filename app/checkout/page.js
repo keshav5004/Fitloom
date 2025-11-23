@@ -393,10 +393,10 @@ function Checkout() {
     }
   };
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4">
+    <div className="min-h-screen bg-[#E0E7D7] py-10 px-4">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
         {/* Billing Details */}
-        <div className="bg-white rounded-2xl shadow-md p-6">
+        <div className="rounded-2xl shadow-md p-6 bg-amber-50">
           <h2 className="text-2xl font-semibold mb-6">Billing Details</h2>
 
           {/* Saved Addresses */}

@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <>
-      <section className="text-gray-600 body-font">
+      <section className="text-gray-600 body-font bg-[#E0E7D7]">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-wrap w-full mb-20 flex-col items-center text-center">
             <h1 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
@@ -18,7 +18,7 @@ export default function Home() {
           <div className="flex flex-wrap -m-4">
             {/* Card 1 */}
             <div className="xl:w-1/3 md:w-1/2 p-4">
-              <div className="border border-gray-200 p-6 rounded-lg">
+              <div className="border border-gray-200 p-6 rounded-lg bg-amber-50 shadow-lg">
                 <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
                   <svg
                     fill="none"
@@ -44,7 +44,7 @@ export default function Home() {
 
             {/* Card 2 */}
             <div className="xl:w-1/3 md:w-1/2 p-4">
-              <div className="border border-gray-200 p-6 rounded-lg">
+              <div className="border border-gray-200 p-6 rounded-lg bg-amber-100 shadow-lg">
                 <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
                   <svg
                     fill="none"
@@ -72,7 +72,7 @@ export default function Home() {
 
             {/* Card 3 */}
             <div className="xl:w-1/3 md:w-1/2 p-4">
-              <div className="border border-gray-200 p-6 rounded-lg">
+              <div className="border border-gray-200 p-6 rounded-lg bg-amber-50 shadow-lg">
                 <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
                   <svg
                     fill="none"
@@ -99,7 +99,7 @@ export default function Home() {
 
             {/* Card 4 */}
             <div className="xl:w-1/3 md:w-1/2 p-4">
-              <div className="border border-gray-200 p-6 rounded-lg">
+              <div className="border border-gray-200 p-6 rounded-lg bg-amber-100 shadow-lg">
                 <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
                   <svg
                     fill="none"
@@ -125,7 +125,7 @@ export default function Home() {
 
             {/* Card 5 */}
             <div className="xl:w-1/3 md:w-1/2 p-4">
-              <div className="border border-gray-200 p-6 rounded-lg">
+              <div className="border border-gray-200 p-6 rounded-lg bg-amber-50 shadow-lg">
                 <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
                   <svg
                     fill="none"
@@ -151,7 +151,7 @@ export default function Home() {
 
             {/* Card 6 */}
             <div className="xl:w-1/3 md:w-1/2 p-4">
-              <div className="border border-gray-200 p-6 rounded-lg">
+              <div className="border border-gray-200 p-6 rounded-lg bg-amber-100 shadow-lg ">
                 <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500 mb-4">
                   <svg
                     fill="none"
@@ -176,7 +176,7 @@ export default function Home() {
             </div>
           </div>
 
-          <Link href="/product"><button className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+          <Link href="/product"><button className="flex mx-auto mt-16 text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg shadow-lg rounded-3xl backdrop-blur-md border border-indigo-500/90 shadow-lg">
             Products
           </button></Link>
         </div>

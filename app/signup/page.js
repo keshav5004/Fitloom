@@ -46,7 +46,7 @@ export default function SignupPage() {
   };
 
   return (
-    <section className="bg-gray-50 min-h-screen flex flex-col items-center justify-center px-6 py-8">
+    <section className="bg-gray-50 min-h-screen flex flex-col items-center justify-center px-6 py-8 bg-amber-50">
       {/* Card */}
       <div className="w-full bg-white rounded-lg shadow dark:border sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">

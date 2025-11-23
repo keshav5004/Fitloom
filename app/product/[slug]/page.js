@@ -109,7 +109,7 @@ export default function ProductPage() {
 
   return (
     <>
-      <section className="text-gray-600 body-font overflow-hidden">
+      <section className="text-gray-600 body-font overflow-hidden bg-amber-50">
         <div className="container px-4 md:px-10 py-10 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <div className="lg:w-1/2 w-full flex items-center justify-center">
