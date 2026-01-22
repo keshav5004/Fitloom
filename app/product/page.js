@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 function Products() {
   const [products, setProducts] = useState([]);
@@ -18,11 +17,14 @@ function Products() {
         });
         const data = await res.json();
         if (!data.success) throw new Error(data.message || "Failed to fetch");
+
         const normalized = data.products.map(p => ({
           ...p,
           displayImg: p.img || (p.variants && p.variants[0]?.img) || "",
-          minPrice: p.variants?.reduce((min, v) => Math.min(min, v.price), Infinity) || 0
+          minPrice:
+            p.variants?.reduce((min, v) => Math.min(min, v.price), Infinity) || 0
         }));
+
         setProducts(normalized);
       } catch (e) {
         setError(e.message);
@@ -36,61 +38,125 @@ function Products() {
   const grid = useMemo(() => products, [products]);
 
   return (
-    <div>
-      <section className="text-gray-600 body-font bg-amber-50">
-        <div className="container px-5 py-24 mx-auto">
-          <div className="flex items-center justify-between mb-6">
-            <h1 className="text-2xl font-semibold">All Products</h1>
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0 bg-linear-to-br from-blue-50 via-white to-green-50"></div>
+      <div className="absolute top-0 right-0 w-96 h-96 bg-linear-to-br from-blue-200/20 to-transparent rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-linear-to-tr from-green-200/20 to-transparent rounded-full blur-3xl"></div>
+
+      <section className="relative z-10 text-gray-600 body-font">
+        <div className="container px-5 py-16 mx-auto">
+          {/* Header */}
+          <div className="flex flex-col md:flex-row items-center justify-between mb-12 gap-4">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-blue-600 via-teal-500 to-green-600 bg-clip-text text-transparent mb-2">
+                All Products
+              </h1>
+              <div className="h-1 w-24 bg-linear-to-r from-blue-500 to-green-500 rounded-full"></div>
+            </div>
+
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-              className="text-sm px-4 py-2 rounded bg-pink-500 text-white hover:bg-pink-600"
+              className="group relative overflow-hidden px-6 py-3 rounded-xl bg-linear-to-r from-blue-600 to-green-600 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
             >
-              Back to top
+              <span className="relative z-10 flex items-center gap-2">
+                ↑ Back to Top
+              </span>
             </button>
           </div>
-          {error && <p className="text-red-600 mb-4">{error}</p>}
+
+          {error && (
+            <div className="mb-6 p-4 rounded-xl bg-red-50 border border-red-200">
+              <p className="text-red-600 font-semibold">{error}</p>
+            </div>
+          )}
+
+          {/* Products */}
           <div className="flex flex-wrap -m-4">
-            {loading && <p className="px-4">Loading...</p>}
-            {!loading && grid.map(product => (
-              <Link
-                key={product.slug}
-                href={`/product/${product.slug}`}
-                className="lg:w-1/4 md:w-1/2 p-4 w-full cursor-pointer shadow-lg"
-              >
-                <div>
-                  <div className="block relative h-48 rounded overflow-hidden">
-                    <Image
-                      alt={product.title}
-                      src={product.displayImg || "https://m.media-amazon.com/images/I/51F1xobGQNL._SX679_.jpg"}
-                      className="object-cover object-center w-full h-full block"
-                      width={300}
-                      height={192}
-                      loading="lazy"
-                      onError={(e) => {
-                        console.error("Image failed to load:", e.target.src);
-                        e.target.src = "https://m.media-amazon.com/images/I/51F1xobGQNL._SX679_.jpg";
-                      }}
-                      onLoad={() => {
-                        console.log("Image loaded successfully:", product.title);
-                      }}
-                    />
-                  </div>
-                  <div className="mt-4">
-                    <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">{product.category}</h3>
-                    <h2 className="text-gray-900 title-font text-lg font-medium">{product.title}</h2>
-                    {product.variants && product.variants.length > 0 && product.variants.every(v => v.availability === false) && (
-                      <span className="text-red-500 font-semibold text-sm">Out of Stock</span>
-                    )}
-                    <p className="mt-1">₹{product.minPrice || 0}.00</p>
-                    <div className="flex mt-2">
-                      {[...new Set((product.variants || []).map(v => v.color))].slice(0,5).map(color => (
-                        <span key={color} className="border-2 border-gray-200 rounded-full w-4 h-4 mr-1" style={{ backgroundColor: (color || '').toLowerCase() }} />
-                      ))}
+            {loading && (
+              <div className="w-full flex justify-center py-20">
+                <div className="w-16 h-16 border-4 border-blue-200 border-t-blue-600 rounded-full animate-spin"></div>
+              </div>
+            )}
+
+            {!loading &&
+              grid.map((product, index) => (
+                <div key={product.slug} className="lg:w-1/4 md:w-1/2 p-4 w-full">
+                  <Link href={`/product/${product.slug}`}>
+                    <div className="group relative h-full cursor-pointer">
+                      {/* Glow */}
+                      <div className="absolute inset-0 bg-linear-to-br from-blue-400/20 to-green-400/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition-opacity"></div>
+
+                      {/* Card */}
+                      <div className="relative h-full bg-white/80 backdrop-blur-sm border border-gray-100 rounded-2xl overflow-hidden hover:shadow-2xl hover:shadow-blue-200/30 transition-all duration-300 transform group-hover:-translate-y-2">
+                        {/* Image */}
+                        <div className="relative h-64 overflow-hidden bg-linear-to-br from-gray-50 to-gray-100">
+                          <img
+                            src={
+                              product.displayImg ||
+                              "https://m.media-amazon.com/images/I/51F1xobGQNL._SX679_.jpg"
+                            }
+                            alt={product.title}
+                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            loading="lazy"
+                            onError={(e) => {
+                              e.target.src =
+                                "https://m.media-amazon.com/images/I/51F1xobGQNL._SX679_.jpg";
+                            }}
+                          />
+
+                          {/* Badges */}
+                          {product.variants &&
+                            product.variants.every(v => v.availability === false) && (
+                              <span className="absolute top-4 right-4 px-3 py-1 rounded-full bg-red-500 text-white text-xs font-bold">
+                                Out of Stock
+                              </span>
+                            )}
+
+                          {index < 3 && (
+                            <span className="absolute top-4 left-4 px-3 py-1 rounded-full bg-linear-to-r from-blue-600 to-green-600 text-white text-xs font-bold">
+                              New
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Content */}
+                        <div className="p-6">
+                          <h3 className="text-teal-600 text-xs tracking-widest font-semibold mb-2 uppercase">
+                            {product.category}
+                          </h3>
+
+                          <h2 className="text-gray-900 text-lg font-bold mb-3 group-hover:text-blue-600 transition-colors">
+                            {product.title}
+                          </h2>
+
+                          <div className="flex items-center justify-between mb-4">
+                            <p className="text-2xl font-bold bg-linear-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
+                              ₹{product.minPrice}
+                            </p>
+                          </div>
+
+                          {/* Colors */}
+                          <div className="flex gap-1">
+                            {[...new Set((product.variants || []).map(v => v.color))]
+                              .slice(0, 5)
+                              .map(color => (
+                                <span
+                                  key={color}
+                                  className="w-5 h-5 rounded-full border border-gray-300"
+                                  style={{ backgroundColor: color?.toLowerCase() }}
+                                />
+                              ))}
+                          </div>
+                        </div>
+
+                        {/* Accent */}
+                        <div className="h-1 bg-linear-to-r from-blue-500 to-green-500 scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></div>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
-              </Link>
-            ))}
+              ))}
           </div>
         </div>
       </section>
