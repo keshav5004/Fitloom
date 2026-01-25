@@ -7,7 +7,7 @@ export default function Home() {
       <section className="text-gray-600 body-font relative">
         {/* Background */}
         <div
-          className="absolute inset-0"
+          className="fixed inset-0"
           style={{
             backgroundImage: 'url("/background.jpg")',
             backgroundSize: "contain",

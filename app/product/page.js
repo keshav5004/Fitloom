@@ -40,9 +40,9 @@ function Products() {
   return (
     <div className="relative min-h-screen overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-linear-to-br from-blue-50 via-white to-green-50"></div>
-      <div className="absolute top-0 right-0 w-96 h-96 bg-linear-to-br from-blue-200/20 to-transparent rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-linear-to-tr from-green-200/20 to-transparent rounded-full blur-3xl"></div>
+      <div className="fixed inset-0 bg-linear-to-br from-blue-50 via-white to-green-50"></div>
+      <div className="fixed top-0 right-0 w-96 h-96 bg-linear-to-br from-blue-200/20 to-transparent rounded-full blur-3xl"></div>
+      <div className="fixed bottom-0 left-0 w-96 h-96 bg-linear-to-tr from-green-200/20 to-transparent rounded-full blur-3xl"></div>
 
       <section className="relative z-10 text-gray-600 body-font">
         <div className="container px-5 py-16 mx-auto">
@@ -81,7 +81,7 @@ function Products() {
 
             {!loading &&
               grid.map((product, index) => (
-                <div key={product.slug} className="lg:w-1/4 md:w-1/2 p-4 w-full">
+                <div key={product.slug} className="lg:w-1/4 md:w-1/2 w-1/2 p-4">
                   <Link href={`/product/${product.slug}`}>
                     <div className="group relative h-full cursor-pointer">
                       {/* Glow */}

@@ -32,7 +32,7 @@ export default function Navbar() {
 
   return (
     <div className="relative">
-      <nav className="flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3 shadow-md bg-white w-full overflow-hidden">
+      <nav className="fixed top-0 left-0 right-0 flex justify-between items-center px-4 sm:px-6 lg:px-8 py-3 shadow-md bg-white w-full overflow-hidden z-50">
         <div className="text-2xl font-bold text-violet-600">
           <Link href="/">Fitloom</Link>
         </div>
