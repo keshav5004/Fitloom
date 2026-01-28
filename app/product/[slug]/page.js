@@ -101,7 +101,8 @@ export default function ProductPage() {
       name: product?.title || "Product",
       price: currentVariant?.price ?? 0,
       size: "M",
-      color: currentVariant?.color || selectedColorKey
+      color: currentVariant?.color || selectedColorKey,
+      image: currentVariant?.img || product?.img
     });
     toast.info("Proceeding to checkout with this item");
     router.push("/checkout");
@@ -222,7 +223,8 @@ export default function ProductPage() {
                     name: product?.title || "Product",
                     price: currentVariant?.price ?? 0,
                     size: "M",
-                    color: currentVariant?.color || selectedColorKey
+                    color: currentVariant?.color || selectedColorKey,
+                    image: currentVariant?.img || product?.img
                   })}
                   className="flex ml-auto text-white bg-pink-500 border-0 py-2 px-4 text-sm md:px-6 md:text-base focus:outline-none hover:bg-pink-600 rounded"
                   disabled={!currentVariant?.availability}
