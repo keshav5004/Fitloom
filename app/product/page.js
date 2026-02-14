@@ -92,16 +92,13 @@ function Products() {
                         {/* Image */}
                         <div className="relative h-64 overflow-hidden bg-linear-to-br from-gray-50 to-gray-100">
                           <img
-                            src={
-                              product.displayImg ||
-                              "https://m.media-amazon.com/images/I/51F1xobGQNL._SX679_.jpg"
-                            }
+                            src={product.displayImg || product.img}
                             alt={product.title}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                             loading="lazy"
                             onError={(e) => {
-                              e.target.src =
-                                "https://m.media-amazon.com/images/I/51F1xobGQNL._SX679_.jpg";
+                              e.target.onerror = null; // Prevents infinite loop
+                              e.target.src = "/no-image.png";
                             }}
                           />
 

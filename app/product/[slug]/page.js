@@ -115,22 +115,20 @@ export default function ProductPage() {
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <div className="lg:w-1/2 w-full flex items-center justify-center">
               <div className="relative w-72 h-72 sm:w-80 sm:h-80">
-                <Image
-                  alt="ecommerce"
-                  src={
-                    currentVariant?.img ||
-                    product?.img ||
-                    "https://m.media-amazon.com/images/I/51F1xobGQNL._SX679_.jpg"
-                  }
-                  fill
-                  className="object-cover object-center rounded-md"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  priority
-                  onError={(e) => {
-                    e.target.src =
-                      "https://m.media-amazon.com/images/I/51F1xobGQNL._SX679_.jpg";
-                  }}
-                />
+                {currentVariant?.img || product?.img ? (
+                  <Image
+                    alt="ecommerce"
+                    src={currentVariant?.img || product?.img}
+                    fill
+                    className="object-cover object-center rounded-md"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    priority
+                  />
+                ) : (
+                  <div className="absolute inset-0 flex items-center justify-center bg-gray-100 text-gray-400 text-xl font-semibold rounded-md">
+                    No image available
+                  </div>
+                )}
               </div>
             </div>
 
