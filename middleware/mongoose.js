@@ -16,7 +16,7 @@ const connectDb = async () => {
   }
 
   await mongoose.connect(mongoUri, {
-    bufferCommands: false,
+    bufferCommands: true,
   });
   isConnected = true;
 };
